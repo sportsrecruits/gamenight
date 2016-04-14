@@ -22,6 +22,10 @@ Route::get('/test', function () {
 Route::get('/', 'LeaderboardController@index');
 
 
+Route::get('refresher/leaderboard', 'RefresherController@leaderboard');
+Route::get('refresher/match/{id}', 'RefresherController@match');
+
+
 Route::group(['middleware' => 'auth'], function()
 {
 	// creates a competition if necesarry

@@ -23,8 +23,13 @@ class LeaderboardController extends Controller
 // 	    $leaderboard = \App\Leaderboard::where('competition_id','=',$competition->id)->orderBy('points_total', 'desc')->with('user')->get();
 	    $leaderboard = \App\Leaderboard::where('competition_id','=',$competition->id)->orderBy('points_total', 'desc')->with('user')->get();
 
+/*
+		$leaderboard = \App\User::with(['leaderboard' => function ($query) use ($competition) {
+						$query->where('competition_id', $competition->id);
+					}])->get(); 
+		$leaderboard = $leaderboard->sortByDesc("leaderboard.points_total")->values()->all();
+*/
 
-// dd($leaderboard);		
 		$matches = \App\Match::where("locked_winner_match_team_id",'=', 0)->where("competition_id","=",$competition->id)->with('game')->get();
 	    
 	    return view('leaderboard', array('message' => Session::get('message'), 'leaderboard' => $leaderboard, 'matches' => $matches, 'tab' => 'leaderboard'));
