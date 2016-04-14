@@ -17,10 +17,6 @@ Route::get('/test', function () {
 
 });
 
-Route::get('/userX', function () {
-    return view('user');
-});
-
 Route::get('/', 'LeaderboardController@index');
 
 Route::group(['middleware' => 'auth'], function () {
