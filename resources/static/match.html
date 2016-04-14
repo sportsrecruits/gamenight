@@ -1,0 +1,178 @@
+
+<html>
+    <head>
+        <title>GameNight</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- GameNight CSS -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="gamenight.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+
+
+    </head>
+    <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><span style="color:#C73B28">Game</span>Night</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class=""><a href="/">Leaderboard</a></li>
+            <li class="active"><a href="/match">Matches</a></li>
+                        <li class=""><a href="/user">Profile</a></li>
+			          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="new-match-creator">
+
+          	<form action="/match" method="POST" class="u-flex-grow-auto">
+          		<span class="u-flex-grow-auto">
+          		<span style="font-weight: 500;font-size:13px;">Start&nbsp;New&nbsp;Game:</span>
+					<input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
+					<select name="game_id" class="form-control">
+				  		  <option value="1">Coup</option>
+				  		  <option value="2">Foosball</option>
+				  		  <option value="3">Ticket to ride</option>
+				  		  <option value="4">Coup</option>
+				  		  <option value="5">Exploding kittens</option>
+				  		  <option value="6">Cards against humanity</option>
+				  		  <option value="7">Resistance</option>
+				  		  <option value="8">Foosball</option>
+				  		  <option value="9">Ticket to ride</option>
+					  </select>
+				  </span>
+				<input type="submit" value="Go" class="btn btn-default u-flex-grow-auto" />
+			</form>
+          </div>
+
+    <div class="container page-heading" id="startchange">
+      <h1>MATCHES</h1>
+    </div>
+
+    <div class="container no-side-padding">
+
+
+
+<div class="panel panel-default match-card">
+  <div class="panel-heading">
+  	<a href="/match/20" class="u-flex-space-between"><span>#20 - Coup</span> <i class="material-icons pull-right">arrow_forward</i></a>
+  </div>
+  <div class="panel-body">
+	<ul class="list-group">
+		<li class="list-group-item match-card-team-name">
+			<div class="u-flex-start"><span class="img-circle team-logo team_style_1"></span><!-- <img src="badges/0001.png" alt="" class="img-circle team_style_1"> --><span>Cat Stefanovici&#039;s Team</span></div>
+		</li>
+		<li class="list-group-item match-card-teammates">
+			<img class="img-circle team-captain-avatar" src="https://lh5.googleusercontent.com/-vxcOaYrbibA/AAAAAAAAAAI/AAAAAAAAAAA/HpKMOcnlyfA/photo.jpg?sz=50">
+		</li>
+	</ul>
+	<ul class="list-group">
+		<li class="list-group-item match-card-team-name">
+			<div class="u-flex-start"><span class="img-circle team-logo team_style_2"></span><span>Patrick Ng&#039;s Team</span></div>
+		</li>
+		<li class="list-group-item match-card-teammates">
+			<img class="img-circle team-captain-avatar" src="https://lh4.googleusercontent.com/-CLQXcSY-7-4/AAAAAAAAAAI/AAAAAAAAAAw/Lh2sIH3nrlA/photo.jpg?sz=50">
+		</li>
+	</ul>
+	<ul class="list-group">
+		<li class="list-group-item match-card-team-name">
+			<div class="u-flex-start"><span class="img-circle team-logo team_style_3"></span><span>Mallory Bory&#039;s Team</span></div>
+		</li>
+		<li class="list-group-item match-card-teammates">
+			<img class="img-circle team-captain-avatar" src="https://lh3.googleusercontent.com/-oYeOP2FnSJ8/AAAAAAAAAAI/AAAAAAAAAAw/d8DnUzgofNw/photo.jpg?sz=50">
+		</li>
+	</ul>
+	<ul class="list-group make-new-team">
+		<li class="list-group-item text-center">
+			<div class="make-team-btn-desc">Want to start your own team?</div>
+			<div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
+				<form action="/team/29" method="POST">
+					<input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
+					<input type="hidden" name="_method" value="PUT">
+					<input type="hidden" name="mode" value="leave" />
+				    <input type="submit" type="button" value=" Make A New Team" class="btn btn-default match-card-team-btn" />
+				</form>
+			</div>
+		</li>
+	</ul>
+  </div>
+</div>
+
+<div class="panel panel-default match-card">
+  <div class="panel-heading">
+  	<a href="/match/20" class="u-flex-space-between"><span>#23 - Foosball</span> <i class="material-icons pull-right">arrow_forward</i></a>
+  </div>
+  <div class="panel-body">
+	<ul class="list-group">
+		<li class="list-group-item match-card-team-name">
+			<div class="u-flex-start"><span class="img-circle team-logo team_style_4"></span><span>Cat Stefanovici&#039;s Team</span></div>
+		</li>
+		<li class="list-group-item match-card-teammates">
+			<img class="img-circle team-captain-avatar" src="https://lh5.googleusercontent.com/-vxcOaYrbibA/AAAAAAAAAAI/AAAAAAAAAAA/HpKMOcnlyfA/photo.jpg?sz=50"><img class="img-circle" src="https://lh3.googleusercontent.com/-oYeOP2FnSJ8/AAAAAAAAAAI/AAAAAAAAAAw/d8DnUzgofNw/photo.jpg?sz=50">
+		</li>
+		<li class="list-group-item text-center">
+			<div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
+				<form action="/team/29" method="POST">
+					<input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
+					<input type="hidden" name="_method" value="PUT">
+					<input type="hidden" name="mode" value="leave" />
+				    <input type="submit" type="button" value="Leave this Team" class="btn btn-default btn-red match-card-team-btn" />
+				</form>
+			</div>
+		</li>
+	</ul>
+
+	<ul class="list-group">
+		<li class="list-group-item match-card-team-name">
+			<div class="u-flex-start"><span class="img-circle team-logo team_style_5"></span><span>Anthony Rodriguez&#039;s Team</span></div>
+		</li>
+		<li class="list-group-item match-card-teammates">
+			<img class="img-circle team-captain-avatar" src="http://sportsrecruits.co/images/circle-profiles/anthony.png" alt="" />
+		</li>
+		<li class="list-group-item text-center">
+			<!-- <div class="join-team-btn-desc">Anthony needs a teammate!</div> -->
+			<div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
+				<form action="/team/29" method="POST">
+					<input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
+					<input type="hidden" name="_method" value="PUT">
+					<input type="hidden" name="mode" value="leave" />
+				    <input type="submit" type="button" value="Join this Team" class="btn btn-default match-card-team-btn" />
+				</form>
+			</div>
+		</li>
+	</ul>
+  </div>
+</div>
+<div class="container footer">
+  Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
+</div>
+    </body>
+</html>

@@ -1,0 +1,120 @@
+
+<!--
+Display one match
+  - the teams on each with the members
+  - button to select a winner
+-->
+
+<html>
+    <head>
+        <title>GameNight</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- GameNight CSS -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="gamenight.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+
+
+    </head>
+    <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><span style="color:#C73B28">Game</span>Night</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class=""><a href="/">Leaderboard</a></li>
+            <li class="active"><a href="/match">Matches</a></li>
+                        <li class=""><a href="/user">Profile</a></li>
+                </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container page-heading" id="startchange">
+      <!-- <a href="" class="prev-pg-link">&larr; ALL MATCHES</a> -->
+      <h1> MATCH #23</h1>
+    </div>
+
+    <div class="container no-side-padding">
+
+
+
+<div class="panel panel-default match-card match-detail-card">
+  <div class="panel-heading">
+    <h2>Foosball</h2>
+  </div>
+  <div class="panel-body">
+  <ul class="list-group">
+    <li class="list-group-item match-card-team-name">
+      <div class="u-flex-start"><span class="img-circle team-logo team_style_1"></span><!-- <img src="badges/0001.png" alt="" class="img-circle team_style_1"> --><span>Cat Stefanovici&#039;s Team</span></div>
+    </li>
+    <li class="list-group-item match-card-teammates">
+      <div class="u-flex-start"><img class="img-circle team-captain-avatar" src="https://lh5.googleusercontent.com/-vxcOaYrbibA/AAAAAAAAAAI/AAAAAAAAAAA/HpKMOcnlyfA/photo.jpg?sz=50"><span>Cat Stefanovici</span></div>
+      <div class="u-flex-start"><img class="img-circle" src="https://lh3.googleusercontent.com/-oYeOP2FnSJ8/AAAAAAAAAAI/AAAAAAAAAAw/d8DnUzgofNw/photo.jpg?sz=50"><span>Me</span></div>
+    </li>
+    <li class="list-group-item text-center">
+      <div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
+        <form action="/team/29" method="POST">
+          <input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
+          <input type="hidden" name="_method" value="PUT">
+          <input type="hidden" name="mode" value="leave" />
+            <input type="submit" type="button" value="Declare This Team the Winner" class="btn btn-default match-card-team-btn" />
+        </form>
+      </div>
+    </li>
+  </ul>
+  <div class="text-center vs">VS.</div>
+  <ul class="list-group">
+    <li class="list-group-item match-card-team-name">
+      <div class="u-flex-start"><span class="img-circle team-logo team_style_3"></span><span>Anthony Rodriguez&#039;s Team</span></div>
+    </li>
+    <li class="list-group-item match-card-teammates">
+      <div class="u-flex-start"><img class="img-circle team-captain-avatar" src="http://sportsrecruits.co/images/circle-profiles/anthony.png"><span>Anthony Rodriguez</span></div>
+    </li>
+    <li class="list-group-item text-center">
+      <div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
+        <form action="/team/29" method="POST">
+          <input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
+          <input type="hidden" name="_method" value="PUT">
+          <input type="hidden" name="mode" value="leave" />
+            <input type="submit" type="button" value="Declare This Team the Winner" class="btn btn-default match-card-team-btn" />
+        </form>
+      </div>
+    </li>
+  </ul>
+
+  </div>
+</div>
+
+<div class="container footer">
+  Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
+</div>
+    </body>
+</html>
