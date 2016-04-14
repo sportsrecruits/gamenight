@@ -34,7 +34,6 @@ Form to create a new match
 		  <img class="img-circle team-captain-avatar" src="{{$team_user->user->avatar}}">
 		  @endforeach
 	  </li>
-	  @if ($team->user_on_team || !$match->user_in_matc)
 	  <li class="list-group-item text-center">
 	  	<div class="btn-group btn-group-sm" role="group" aria-label="Small button group"> 
 			<form action="/team/{{$team->id}}" method="POST">
@@ -49,7 +48,6 @@ Form to create a new match
 			</form>
 		</div>
 	  </li>
-	  @endif
 	  @endforeach
 	</ul>
 	@if (!$match->user_in_match)
