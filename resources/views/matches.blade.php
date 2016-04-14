@@ -13,11 +13,13 @@ Form to create a new match
 -->
 
 @section('content')
+<div class="wrapper">
 <div class="container page-heading" id="startchange">
   <h1>MATCHES</h1>
 </div>
 
-<div class="container no-side-padding">
+<div class="container no-side-padding inner-wrapper">
+<div class="match-cards">
 @foreach ($matches as $match)
 <div class="panel panel-default match-card">
   <div class="panel-heading">
@@ -85,6 +87,7 @@ Form to create a new match
 		<input type="submit" value="Go" class="btn btn-default u-flex-grow-auto" />
 	</form>
 	</div>
+</div>
 	<div class="container footer">
         Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
     </div>
@@ -93,7 +96,7 @@ Form to create a new match
 @if (!empty($matches[0]))
 <input type="hidden" name="hidden_leaderboard_time" value="{{$matches[0]->competition->updated_at}}" />
 @endif
-
+</div>
 @stop
 
 
