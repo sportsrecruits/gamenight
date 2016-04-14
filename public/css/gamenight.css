@@ -535,3 +535,16 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform: uppercase;
 	color: rgba(255,255,255,.3);
 }
+
+.alert {
+position: absolute;
+    top: 50px;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 0;
+    text-shadow: none;
+    border: 0;
+    box-shadow: none;
+    width: 100%;
+    text-align: center;
+}
