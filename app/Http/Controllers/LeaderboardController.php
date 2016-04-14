@@ -20,8 +20,11 @@ class LeaderboardController extends Controller
 		}	
 		
 	    // lets display this thing
+// 	    $leaderboard = \App\Leaderboard::where('competition_id','=',$competition->id)->orderBy('points_total', 'desc')->with('user')->get();
 	    $leaderboard = \App\Leaderboard::where('competition_id','=',$competition->id)->orderBy('points_total', 'desc')->with('user')->get();
-		
+
+
+// dd($leaderboard);		
 		$matches = \App\Match::where("locked_winner_match_team_id",'=', 0)->where("competition_id","=",$competition->id)->with('game')->get();
 	    
 	    return view('leaderboard', array('message' => Session::get('message'), 'leaderboard' => $leaderboard, 'matches' => $matches, 'tab' => 'leaderboard'));
