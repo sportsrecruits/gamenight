@@ -19,7 +19,20 @@ class UserController extends Controller
     
     public function showProfile () 
     {
-		echo Auth::user();
+		$user = Auth::user();
+		
+		$matches = \App\Match::with('game','teams.users.user')->whereHas('teams.users', function ($query) use ($user) {
+						$query->where('user_id', $user->id);
+					})->get(); 
+// dd($matches);
+
+		$data = [
+			'tab' => 'profile',
+			'user' => Auth::user(),
+			'matches' => $matches
+		];
+	    return view('user', $data);
+
     }
     
     public function handleProviderCallback()

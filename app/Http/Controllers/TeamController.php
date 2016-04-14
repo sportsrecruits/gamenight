@@ -89,7 +89,7 @@ class TeamController extends Controller
         $mode = $request->input('mode');
         
         // determine if you are on the team 
-        $team = \App\MatchTeam::with('users','match')->findOrFail($id);
+        $team = \App\MatchTeam::with('users','match.teams.users')->findOrFail($id);
         
         $user = \App\User::find(Auth::user()->id);
 
@@ -100,8 +100,11 @@ class TeamController extends Controller
 	        	// if last person to leave delete this team
 	        	if (count($team->users) == 1) {
 		        	$team->delete();
-		        	$team->match->delete();
+					if ($team->match->teams->reduce(function ($carry,$team) { return $team->users->count() + $carry;}) == 1) {
+			        	$team->match->delete();
+			        }
 	        	}
+
 	        break;
 	        case 'join':
 			default:

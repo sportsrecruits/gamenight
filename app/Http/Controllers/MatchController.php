@@ -19,16 +19,19 @@ class MatchController extends Controller
     {
         $data = array('matches' => \App\Match::with('competition','teams.users', 'game')->where('created_at', '>', Carbon::today('America/New_York'))->where('locked_winner_match_team_id', '=', '0')->get());
  
+ 
 		foreach ($data['matches'] as &$match) {
+			$match->user_in_match = false;
 			foreach ($match->teams as &$team) {
-				if ($team->users->where('user_id', Auth::user()->id)) {
+				if ($team->users->contains('user_id', Auth::user()->id)) {
 					$team->user_on_team = true;
+					$match->user_in_match = true;
 				} else {
 					$team->user_on_team = false;
 				}
 			}
 		}
-        
+
 		$data['message'] = Session::get('message');
         $data['games'] = \App\Game::all();
         $data['tab'] = 'matches';
@@ -96,11 +99,17 @@ $username = Request::old('username');
         //
         $match = \App\Match::with('teams.users.user','game')->findOrFail($id);
 		$my_user_id = Auth::user()->id;
-		$am_i_in_match =  (isset($match->teams[0]) && $match->teams[0]->users->contains('user_id', $my_user_id)) || (isset($match->teams[1]) && $match->teams[1]->users->contains('user_id', $my_user_id));       
+		
+		$user_in_match = false;
+		foreach ($match->teams as $index => $team) {
+			if ($match->teams[$index]->users->contains('user_id', $my_user_id)) {
+				$user_in_match = true;
+			}
+		}
 
 		$have_i_voted = (bool) DB::select('select * from match_winners where user_id = :user_id AND match_id = :match_id', ['user_id' => $my_user_id, 'match_id' => $match->id]);
 
-		return view ('match', array('message' => Session::get('message'), 'match' => $match, 'have_i_voted' => $have_i_voted, 'tab' => 'matches')); 
+		return view ('match', array('message' => Session::get('message'), 'match' => $match, 'have_i_voted' => $have_i_voted, 'tab' => 'matches', 'user_in_match' => $user_in_match)); 
     }
 
     /**

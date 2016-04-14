@@ -31,7 +31,7 @@ Form to create a new match
 		    @if ($team->user_on_team)
 				<input type="hidden" name="mode" value="leave" />
 			    <input type="submit" type="button" value="Leave Team" class="btn btn-default" />
-		    @else 
+		    @elseif (!$match->user_in_match)
 			    <input type="submit" type="button" value="Join Team" class="btn btn-default" /> 
 		    @endif
 			</form>
@@ -40,11 +40,13 @@ Form to create a new match
 	  </li>
 	  @endforeach
 	</ul>
+	@if (!$match->user_in_match)	
 	<form action="/team" method="POST">
 		{{ csrf_field() }}
 		<input type="hidden" name="match_id" value="{{$match->id}}" />
 		<input type="submit" value="New Team" class="btn btn-default" />
 	</form>
+	@endif
   </div>
 </div>
 @endforeach

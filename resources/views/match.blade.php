@@ -23,6 +23,8 @@ Display one match
 			</li>
 		@endforeach
 	</ul>
+
+	@if ($user_in_match)
 	<form action="/match/win/{{$match->id}}" method="POST">
 		{{ csrf_field() }}
 		<input type="hidden" name="winning_team_id" value="{{$team->id}}" />
@@ -32,6 +34,7 @@ Display one match
 		<button type="submit" class="btn btn-primary btn-lg btn-block">Declare {{$team->name}} as the winner</button>
 		@endif
 	</form>
+	@endif
   </div>
 </div>
 @endforeach
