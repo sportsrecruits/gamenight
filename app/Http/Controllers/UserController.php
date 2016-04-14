@@ -25,10 +25,37 @@ class UserController extends Controller
 						$query->where('user_id', $user->id);
 					})->get(); 
 // dd($matches);
+		
+		/*
+		 *	process additional params
+		 *	@status: complete|in-progress|won
+		 */
+		foreach ($matches as &$match) {
+			if ($match->locked_winner_match_team_id) {
 
+				if ($match->teams->where('id', $match->locked_winner_match_team_id)->first()->users->contains('user_id', $user->id)) {
+					$match->status = 'won';
+				} else {
+					$match->status = 'complete';
+				}
+			} else {
+				$match->status = 'in-progress';
+			}		
+		}
+
+		// Total alltime points
+		$user->alltime_points = \App\Leaderboard::where('user_id', '=', $user->id)->get()->reduce(
+			function ($carry, $l) {
+				return $l->points_total + $carry;
+			}	
+		);
+
+		$user->today_points = \App\Leaderboard::where('user_id','=',$user->id)->orderBy('competition_id', 'desc')->first()->points_total;
+
+		
 		$data = [
 			'tab' => 'profile',
-			'user' => Auth::user(),
+			'user' => $user,
 			'matches' => $matches
 		];
 	    return view('user', $data);

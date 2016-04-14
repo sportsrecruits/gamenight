@@ -12,6 +12,8 @@ Display one match
 <div class="col-xs-4">
 <img width="50" class="img-rounded" src="{{$user->avatar}}" alt="" />
 <h4>{{$user->name}}</h4>
+<p><span>All-time:</span>{{$user->alltime_points}}</p>
+<p><span>Today:</span>{{$user->today_points}}</p>
 </div>
         
 <div class="col-xs-8" style="border-left:1px solid #ccc;">
@@ -20,9 +22,11 @@ Display one match
 	@foreach ($matches as $match)
 	<li class="list-group-item">
 		<h5>{{$match->game->name}}
-		@if ($match->win) 
+		@if ($match->status == 'won') 
 		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>		
-		@else 
+		@elseif ($match->status == 'complete') 
+		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>		
+		@elseif ($match->status == 'in-progress') 
 		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>		
 		@endif	
 			

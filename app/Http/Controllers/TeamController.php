@@ -91,7 +91,6 @@ class TeamController extends Controller
         // determine if you are on the team 
         $team = \App\MatchTeam::with('users','match.teams.users')->findOrFail($id);
         
-        $user = \App\User::find(Auth::user()->id);
 
 
         switch ($mode) {
@@ -108,7 +107,16 @@ class TeamController extends Controller
 	        break;
 	        case 'join':
 			default:
-	        	$team->users()->save($user);
+				// check that they do not have a game in progress
+				$user = \App\User::matchInProgress->find(Auth::user()->id); // NOTE: left here
+				// redirect to that match if they have in progress with flash message saying 'please choose a winner first' 
+				
+				// new matchTeamsUser
+				$save_user = new \App\MatchTeamsUser;
+				$save_user->team_id = $id;
+				$save_user->user_id = $user->id;
+				$save_user->save();
+	        	$team->users()->save($save_user);
 	        break;
         }
         
