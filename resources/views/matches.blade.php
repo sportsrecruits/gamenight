@@ -13,56 +13,78 @@ Form to create a new match
 -->
 
 @section('content')
-<h4>Matches</h4>
+<div class="container page-heading" id="startchange">
+  <h1>MATCHES</h1>
+</div>
 
+<div class="container no-side-padding">
 @foreach ($matches as $match)
-<div class="panel panel-default">
-  <div class="panel-heading"><a href="/match/{{$match->id}}">Match {{$match->id}} - {{ucfirst($match->game->name)}}</a></div>
+<div class="panel panel-default match-card">
+  <div class="panel-heading">
+  	<a href="/match/{{$match->id}}" class="u-flex-space-between"><span>#{{$match->id}} - {{ucfirst($match->game->name)}}</span> <i class="material-icons pull-right">arrow_forward</i></a></div>
   <div class="panel-body">
-
 	<ul class="list-group">
 	  @foreach ($match->teams as $team)
-	  <li class="list-group-item">
-	    <span class="badge">{{$team->members}}</span>
-	    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group"> 
+	  <li class="list-group-item match-card-team-name">
+	    <div class="u-flex-start"><span class="img-circle team-logo team_style_4"></span><span>{{$team->name}}</span></div>
+	  </li>
+	  
+	  <li class="list-group-item match-card-teammates">
+		  @foreach ($team->users as $team_user)
+		  <img class="img-circle team-captain-avatar" src="{{$team_user->user->avatar}}">
+		  @endforeach
+	  </li>
+	  <li class="list-group-item text-center">
+	  	<div class="btn-group btn-group-sm" role="group" aria-label="Small button group"> 
 			<form action="/team/{{$team->id}}" method="POST">
 			{{ csrf_field() }}
 			{{ method_field('PUT') }}
 		    @if ($team->user_on_team)
 				<input type="hidden" name="mode" value="leave" />
-			    <input type="submit" type="button" value="Leave Team" class="btn btn-default" />
+			    <input type="submit" type="button" value="Leave Team" class="btn btn-default btn-red match-card-team-btn" />
 		    @elseif (!$match->user_in_match)
 			    <input type="submit" type="button" value="Join Team" class="btn btn-default" /> 
 		    @endif
 			</form>
 		</div>
-	    {{$team->name}}
 	  </li>
 	  @endforeach
 	</ul>
-	@if (!$match->user_in_match)	
-	<form action="/team" method="POST">
-		{{ csrf_field() }}
-		<input type="hidden" name="match_id" value="{{$match->id}}" />
-		<input type="submit" value="New Team" class="btn btn-default" />
-	</form>
+	@if (!$match->user_in_match)
+	<ul class="list-group make-new-team">
+        <li class="list-group-item text-center">
+            <div class="make-team-btn-desc">Want to start your own team?</div>
+            <div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
+	            <form action="/team" method="POST">
+					{{ csrf_field() }}
+					<input type="hidden" name="match_id" value="{{$match->id}}" />
+					<input type="submit" type="button" value=" Make A New Team" class="btn btn-default match-card-team-btn" />
+				</form>
+            </div>
+        </li>
+    </ul>
 	@endif
   </div>
 </div>
 @endforeach
+	<div class="new-match-creator">
+	<form action="/match" method="POST" class="u-flex-grow-auto">
+	<span class="u-flex-grow-auto">
 
-<form action="/match" method="POST">
-	{{ csrf_field() }}
-	<h6>New Match</h6>
-	<select name="game_id" class="form-control">
-	  @foreach ($games as $game)
-		  <option value="{{$game->id}}">{{ucfirst($game->name)}}</option>
-	  @endforeach
-	</select>
-
-	<input type="submit" value="Create" class="btn btn-default" />
-</form>
-
-
+		<span style="font-weight: 500;font-size:13px;">Start&nbsp;New&nbsp;Game:</span>
+		{{ csrf_field() }}
+		<select name="game_id" class="form-control">
+		  @foreach ($games as $game)
+			  <option value="{{$game->id}}">{{ucfirst($game->name)}}</option>
+		  @endforeach
+		</select>
+		</span>
+		<input type="submit" value="Go" class="btn btn-default u-flex-grow-auto" />
+	</form>
+	</div>
+	<div class="container footer">
+        Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
+    </div>
+</div>
 @stop
 

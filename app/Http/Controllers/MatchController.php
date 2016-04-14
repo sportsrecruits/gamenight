@@ -155,6 +155,11 @@ $username = Request::old('username');
 			$match->locked_winner_match_team_id = $maxs[0];
 			$match->save();
 
+			// update competitino for refreshers				
+			$cp = \App\Competition->find($match->competition_id);
+			$cp->updated_at = Carbon::now('America/New_York');
+			$cp->save();
+
 			foreach ($match->teams->where('id', $match->locked_winner_match_team_id)->first()->users as $team_user) {
 				$l_user = $team_user->user;
 				$points_awarded_per_user = $match->game->points / 2 * count($match->teams);
@@ -172,6 +177,7 @@ $username = Request::old('username');
 					$leaderboard->points_total = $points_awarded_per_user;
 				}
 				$leaderboard->save();
+
 			}
 		}
 

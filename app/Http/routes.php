@@ -19,21 +19,25 @@ Route::get('/test', function () {
 
 Route::get('/', 'LeaderboardController@index');
 
-Route::group(['middleware' => 'auth'], function () {
-    // creates a competition if necesarry
-    // displays the leaderboard
-    // loads up all of the players that have any points
+Route::get('refresher/leaderboard', 'RefresherController@leaderboard');
+Route::get('refresher/match/{id}', 'RefresherController@match');
 
-    Route::resource('match', 'MatchController');
-    Route::post('match/win/{id}', 'MatchController@win');
-    // REST matches
-    // save match_winners
-
-    Route::resource('team', 'TeamController');
-    // REST teams
-    // add players to teams
-
-    Route::get('user/', 'UserController@showProfile');
+Route::group(['middleware' => 'auth'], function()
+{
+	// creates a competition if necesarry
+	// displays the leaderboard
+	// loads up all of the players that have any points
+	
+	Route::resource('match', 'MatchController');
+	Route::post('match/win/{id}', 'MatchController@win');
+	// REST matches
+		// save match_winners
+	
+	Route::resource('team', 'TeamController');
+	// REST teams
+		// add players to teams
+	
+	Route::get('user/', 'UserController@showProfile');
 });
 
 Route::get('login', 'UserController@login');
