@@ -1,4 +1,8 @@
+html {
+    height: 100%;
+}
 body {
+    min-height: 100%;
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial;
 	font-weight: 400;
 	background-color: #242746;
@@ -9,6 +13,11 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.wrapper {
+    display: flex;
+    flex-flow: column;
+    min-height: 100%;
 }
 .gold {
 	color: #f9d423;
@@ -22,6 +31,17 @@ h1, h2, h3, h4, h5, h6 {
 .container {
     padding-right: 12px;
     padding-left: 12px;
+}
+.inner-wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: column;
+    /*align-items: flex-end;*/
+}
+.match-cards {
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: column;
 }
 .no-side-padding {
 	padding-left: 0 !important;
@@ -165,8 +185,8 @@ h1, h2, h3, h4, h5, h6 {
  padding-top: 20px;
  padding-bottom: 80px;
  margin-top: 40px;
- border-top: 1px solid black;
  opacity: .4;
+ border-top: 1px solid black;
 }
 .footer .material-icons {
 	vertical-align: middle;
