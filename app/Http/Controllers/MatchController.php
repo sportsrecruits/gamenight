@@ -156,7 +156,7 @@ $username = Request::old('username');
 			$match->save();
 
 			// update competitino for refreshers				
-			$cp = \App\Competition->find($match->competition_id);
+			$cp = \App\Competition::find($match->competition_id);
 			$cp->updated_at = Carbon::now('America/New_York');
 			$cp->save();
 
