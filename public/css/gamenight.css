@@ -1,4 +1,8 @@
+html {
+    height: 100%;
+}
 body {
+    min-height: 100%;
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial;
 	font-weight: 400;
 	background-color: #242746;
@@ -9,6 +13,11 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.wrapper {
+    display: flex;
+    flex-flow: column;
+    min-height: 100%;
 }
 .gold {
 	color: #f9d423;
@@ -22,6 +31,17 @@ h1, h2, h3, h4, h5, h6 {
 .container {
     padding-right: 12px;
     padding-left: 12px;
+}
+.inner-wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: column;
+    /*align-items: flex-end;*/
+}
+.match-cards {
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: column;
 }
 .no-side-padding {
 	padding-left: 0 !important;
@@ -159,19 +179,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /*FOOTER*/
 .footer {
+display: flex;
+justify-content: center;
+align-self: flex-end;
  font-size: 12px;
  color: white;
  text-align: center;
  padding-top: 20px;
  padding-bottom: 80px;
  margin-top: 40px;
- border-top: 1px solid black;
  opacity: .4;
+ border-top: 1px solid black;
 }
+
 .footer .material-icons {
 	vertical-align: middle;
 	font-size: 20px;
 	color: #f94e3f;
+    margin: -2px 2px 0;
 }
 
 /*LEADERBOARD PAGE*/
@@ -203,6 +228,9 @@ h1, h2, h3, h4, h5, h6 {
     	margin-bottom: 15px;
     	border: 0;
 	}
+div[data-example-id="contextual-table"] {
+}
+    width: 100%;
 }
 .leaderboard-table {
 	font-size: 13px;
@@ -316,6 +344,8 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 3px;
     box-shadow: none;
     font-size: 15px;
+    align-self: flex-start;
+    width: 100%;
 }
 .match-card .panel-heading {
 	background-image: none;
