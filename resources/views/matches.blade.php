@@ -28,7 +28,6 @@ Form to create a new match
 	  <li class="list-group-item match-card-team-name">
 	    <div class="u-flex-start"><span class="img-circle team-logo team_style_{{$team->style}}"></span><span>{{$team->name}}</span></div>
 	  </li>
-	  
 	  <li class="list-group-item match-card-teammates">
 		  @foreach ($team->users as $team_user)
 		  <img class="img-circle team-captain-avatar" src="{{$team_user->user->avatar}}">

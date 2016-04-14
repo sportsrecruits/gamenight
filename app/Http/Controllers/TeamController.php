@@ -91,23 +91,19 @@ class TeamController extends Controller
         
         // determine if you are on the team 
         $team = \App\MatchTeam::with('users','match.teams.users')->findOrFail($id);
-        
-
 
         switch ($mode) {
 	        case 'leave':
-	        	$team->users()->where('user_id', Auth::user()->id)->delete();
-	        	// if last person to leave delete this team
-	        	if (count($team->users) == 0) {
-		        	$team->delete();
-					if ($team->match->teams->reduce(function ($carry,$team) { return $team->users->count() + $carry;}) == 1) {
+	        	if (count($team->users) == 1) {
+					if ($team->match->teams->reduce(function ($carry,$team) { return $team->users->count() + $carry; }) == 1) {
 			        	$team->match->delete();
 			        }
+		        	$team->delete();
 	        	}
+	        	$team->users()->where('user_id', Auth::user()->id)->delete();
 
 	        break;
 	        case 'join':
-			default:
 
 				$user = Auth::user();
 				// check that they do not have a game in progress
@@ -135,8 +131,10 @@ class TeamController extends Controller
         
         
         // update the match for refreshers
-		$team->match->updated_at = Carbon::now('America/New_York');
-		$team->match->save();
+		if ($team->match->exists) {
+			$team->match->updated_at = Carbon::now('America/New_York');
+			$team->match->save();
+		}
 
         return redirect('/match')->with('message', (($mode == 'leave') ? 'You left the team' : 'You joined the team'));
 

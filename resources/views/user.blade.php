@@ -16,7 +16,7 @@ Display one match
 
 <div class="panel panel-default match-card personal-info">
   <div class="panel-heading">
-  	<a href="/match/20" class="u-flex-space-between"><span>Personal Stuff</span></a>
+  	<a href="javascript:;" class="u-flex-space-between"><span>Personal Stuff</span></a>
   </div>
   <div class="panel-body">
 	<ul class="list-group">
@@ -30,26 +30,24 @@ Display one match
 <div class="panel panel-default match-card personal-info">
 
   <div class="panel-heading">
-  	<a href="/match/20" class="u-flex-space-between"><span>MY GAMES</span></a>
+  	<a href="/match" class="u-flex-space-between"><span>MY MATCHES</span></a>
   </div>
 
   <div class="panel-body">
 
 	@foreach ($matches as $match)
-
 	<ul class="list-group">
 
 	    <li class="list-group-item match-card-team-name">
-	      <div class="u-flex-start"><span>{{$match->game->name}}</span></div>
+	      <div class="u-flex-start"><span>#{{$match->id}} - {{ucfirst($match->game->name)}}</span></div>
 	    </li>
 
 		@foreach ($match->teams as $team)
 		    <li class="list-group-item match-card-teammates">
-		      <div class="u-flex-start"><span class="img-circle team-logo team_style_3"></span><span>{{$team->name}}</span></div>
+		      <div class="u-flex-start"><span class="img-circle team-logo team_style_{{$team->style}}"></span><span>{{$team->name}}</span></div>
 		    </li>
 
 		    @if ($team->user_on_team)
-
 		    <li class="list-group-item text-center">
 				@if ($match->status == 'won')
 					<strong>You won this game!</strong><br>{{$user->today_points}}
@@ -64,8 +62,8 @@ Display one match
 			
 			@endif
 		@endforeach
-			</ul>
-		<div class="game-timestamp">{{$match->created_at->diffForHumans()}}</div>
+	</ul>
+	<div class="game-timestamp">{{$match->created_at->diffForHumans()}}</div>
   	@endforeach
 </div>
 
