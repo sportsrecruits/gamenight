@@ -12,14 +12,18 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+<!-- GameNight CSS -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/gamenight.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
        
-<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-        
     </head>
     <body>
 
@@ -32,30 +36,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><?=Config::get('app.name')?></a>
+          <a class="navbar-brand" href="/"><span style="color:#C73B28">Game</span>Night</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="{{($tab=="leaderboard") ? 'active' : ''}}"><a href="/">Leaderboard</a></li>
-            <li class="{{($tab=="matches") ? 'active' : ''}}"><a href="/match">Matches</a></li>
-            @if (Auth::check())
-            <li class="{{($tab=="profile") ? 'active' : ''}}"><a href="/user">Profile</a></li>
-			@else
-            <li><a href="/login">Login</a></li>
-			@endif
-          </ul>
+			<ul class="nav navbar-nav navbar-right">
+	            <li class="{{($tab=="leaderboard") ? 'active' : ''}}"><a href="/">Leaderboard</a></li>
+	            <li class="{{($tab=="matches") ? 'active' : ''}}"><a href="/match">Matches</a></li>
+	            @if (Auth::check())
+	            <li class="{{($tab=="profile") ? 'active' : ''}}"><a href="/user">Profile</a></li>
+				@else
+	            <li><a href="/login">Login</a></li>
+				@endif
+			</ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
-<br><br><br>
     
-        <div class="container">
+    
 @if (!empty($message))
     <div class="alert alert-info">{{$message}}</div>
 @endif
 
-            @yield('content')
-        </div>
+@yield('content')
+
     </body>
 </html>
