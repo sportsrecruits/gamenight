@@ -52,6 +52,8 @@ Display one match
 				@if ($match->status == 'won')
 					<strong>You won this game!</strong><br>{{$user->today_points}}
 				@elseif ($match->status == 'complete')
+
+				@elseif ($match->status == 'in-progress')
 			      <div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
 			        <form action="/team/29" method="POST">
 			          <input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
@@ -60,8 +62,6 @@ Display one match
 			            <input type="submit" type="button" value="View this Game" class="btn btn-default match-card-team-btn" />
 			        </form>
 			      </div>
-				@elseif ($match->status == 'in-progress')
-
 				@endif
 			</li>
 		@endforeach
