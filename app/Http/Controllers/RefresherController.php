@@ -12,11 +12,11 @@ class RefresherController extends Controller
         
 	public function leaderboard() {
 		$competition = \App\Competition::orderBy('id', 'desc')->first();
-		return response()->json(['updatedAt' => $competition->updated_at], 200);
+		return response()->json(['updatedAt' => $competition->updated_at->format("Y-m-d H:i:s")], 200);
 	}
 	
 	public function match($id) {
 		$match = \App\Match::find($id);
-		return response()->json(['updatedAt' => $match->updated_at], 200);
+		return response()->json(['updatedAt' => $match->updated_at->format("Y-m-d H:i:s")], 200);
 	}
 }

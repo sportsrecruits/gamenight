@@ -68,15 +68,20 @@ $( document ).ready(function() {
 @yield('refreshers')
 
 function overlyComplexButBeautifulFunction(url, numericValue, inputName) {
+console.log('y');
     $.ajax({
         url: url,
         success: function(data) {
             var inputValue = $('input[name='+inputName+']').val();
+console.log(data.updatedAt);
+console.log(inputValue);
+
             if (data.updatedAt !== inputValue) {
                 location.reload();
             }
         },
         always: function() {
+console.log('x');
             setTimeout(overlyComplexButBeautifulFunction, (numericValue * 1000));
         }
     });
