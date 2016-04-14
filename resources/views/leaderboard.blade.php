@@ -3,11 +3,10 @@
 @section('title', 'Leaderboard')
 
 @section('content')
-<div class="wrapper">
 <div class="container page-heading" id="startchange">
 	<h1>Leaderboard</h1>
 </div>
-<div class="container no-side-padding inner-wrapper">
+<div class="container no-side-padding">
 <p class="current-matches-indicator"> <a href="/match">{{count($matches)}}{{(count($matches) > 1) ? ' matches' : ' match'}} in progress. Check 'em out <i class="material-icons">arrow_forward</i></a></p>
 <div data-example-id="contextual-table" class="table-responsive">
 <table class="table table-striped table-responsive leaderboard-table">
@@ -45,7 +44,6 @@ Made with <i class="material-icons">favorite_border</i> by SR Product Engineerin
 </div>
 
 <input type="hidden" name="hidden_leaderboard_time" value="{{$competition->updated_at}}" />
-</div>
 @stop
 
 

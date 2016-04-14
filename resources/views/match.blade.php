@@ -7,13 +7,13 @@ Display one match
 -->
 
 @section('content')
-<div class="wrapper">
+
+
 <div class="container page-heading" id="startchange">
   <!-- <a href="" class="prev-pg-link">&larr; ALL MATCHES</a> -->
   <h1> MATCH #{{$match->id}}</h1>
 </div>
-<div class="container no-side-padding inner-wrapper">
-	<div class="match-cards">
+<div class="container no-side-padding">
 	<div class="panel panel-default match-card match-detail-card">
 		<div class="panel-heading">
 			<h2>{{ucfirst($match->game->name)}}</h2>
@@ -61,14 +61,12 @@ Display one match
 		@endforeach
 	</div>
 </div>
-</div>
 <div class="container footer">
 	Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
 </div>
 
 <input type="hidden" name="hidden_leaderboard_time" value="{{$match->competition->updated_at}}" />
 <input type="hidden" name="hidden_match_time" value="{{$match->updated_at}}" />
-</div>
 
 @stop
 

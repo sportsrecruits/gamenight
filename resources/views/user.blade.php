@@ -7,13 +7,13 @@ Display one match
 -->
 
 @section('content')
-<div class="wrapper">
+
 <div class="container page-heading" id="startchange">
   <h1>MY PROFILE</h1>
 </div>
 
-<div class="container no-side-padding inner-wrapper">
-<div class="match-cards">
+<div class="container no-side-padding">
+
 <div class="panel panel-default match-card personal-info">
   <div class="panel-heading">
   	<a href="javascript:;" class="u-flex-space-between"><span>Personal Stuff</span></a>
@@ -67,9 +67,9 @@ Display one match
   	@endforeach
 
 </div>
-</div>
+
 <div class="container footer">
   Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
 </div>
-</div>
+
 @stop
