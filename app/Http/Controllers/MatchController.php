@@ -150,7 +150,7 @@ $username = Request::old('username');
 		
 		$maxs = array_keys($tally, max($tally));
 		
-		if ($tally[$maxs[0]] > 3) {
+		if ($tally[$maxs[0]] >= count($match->teams)) {
 			// LOCK IT IN
 			$match->locked_winner_match_team_id = $maxs[0];
 			$match->save();

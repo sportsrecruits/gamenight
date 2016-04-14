@@ -65,6 +65,7 @@ Display one match
 	</ul>
 	<div class="game-timestamp">{{$match->created_at->diffForHumans()}}</div>
   	@endforeach
+
 </div>
 
 <div class="container footer">

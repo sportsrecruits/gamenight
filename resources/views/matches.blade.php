@@ -23,8 +23,8 @@ Form to create a new match
   <div class="panel-heading">
   	<a href="/match/{{$match->id}}" class="u-flex-space-between"><span>#{{$match->id}} - {{ucfirst($match->game->name)}}</span> <i class="material-icons pull-right">arrow_forward</i></a></div>
   <div class="panel-body">
+	  @foreach ($match->teams as $idx => $team)
 	<ul class="list-group">
-	  @foreach ($match->teams as $team)
 	  <li class="list-group-item match-card-team-name">
 	    <div class="u-flex-start"><span class="img-circle team-logo team_style_{{$team->style}}"></span><span>{{$team->name}}</span></div>
 	  </li>
@@ -34,7 +34,7 @@ Form to create a new match
 		  @endforeach
 	  </li>
 	  <li class="list-group-item text-center">
-	  	<div class="btn-group btn-group-sm" role="group" aria-label="Small button group"> 
+	  	<div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group"> 
 			<form action="/team/{{$team->id}}" method="POST">
 			{{ csrf_field() }}
 			{{ method_field('PUT') }}
@@ -47,8 +47,12 @@ Form to create a new match
 			</form>
 		</div>
 	  </li>
-	  @endforeach
 	</ul>
+			@if ($idx < count($match->teams) - 1)
+				<div class="text-center vs">VS.</div>
+			@endif
+
+	  @endforeach
 	@if (!$match->user_in_match)
 	<ul class="list-group make-new-team">
         <li class="list-group-item text-center">
