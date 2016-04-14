@@ -107,8 +107,20 @@ class TeamController extends Controller
 	        break;
 	        case 'join':
 			default:
+
+				$user = Auth::user();
 				// check that they do not have a game in progress
-				$user = \App\User::matchInProgress->find(Auth::user()->id); // NOTE: left here
+// 				$user = \App\User::matchInProgress->find(Auth::user()->id); // NOTE: left here
+				$user_in_progress = \App\MatchTeamsUser::whereHas('user', function ($query) use ($user) {
+					$query->where('user_id', $user->id);
+				})->whereHas('team.match', function ($query) {
+					$query->where('locked_winner_match_team_id', 0);
+				})->with('team.match')->first();
+
+				if ($user_in_progress) {
+					return redirect('match/'.$user_in_progress->team->match->id)->with('message', 'Please select a winner for this match');
+				}
+
 				// redirect to that match if they have in progress with flash message saying 'please choose a winner first' 
 				
 				// new matchTeamsUser
