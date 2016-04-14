@@ -21,6 +21,14 @@ class LeaderboardController extends Controller
 		
 	    // lets display this thing
 	    $leaderboard = \App\Leaderboard::where('competition_id','=',$competition->id)->orderBy('points_total', 'desc')->with('user')->get();
+
+/*
+		$leaderboard = \App\User::with(['leaderboard' => function ($query) use ($competition) {
+						$query->where('competition_id', $competition->id);
+					}])->get(); 
+		$leaderboard = $leaderboard->sortByDesc("leaderboard.points_total")->values()->all();
+*/
+
 		
 		$matches = \App\Match::where("locked_winner_match_team_id",'=', 0)->where("competition_id","=",$competition->id)->with('game')->get();
 	    
