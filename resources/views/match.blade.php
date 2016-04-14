@@ -45,7 +45,7 @@ Display one match
 						<form action="/match/win/{{$match->id}}" method="POST">
 							{{ csrf_field() }}
 							<input type="hidden" name="winning_team_id" value="{{$team->id}}" />
-							@if ($have_i_voted)
+							@if($have_i_voted)
 							<button type="button" class="btn disabled btn-primary btn-lg btn-block">Vote already cast</button>
 							@else
 							<button type="submit" class="btn btn-default match-card-team-btn">Declare This Team The Winner</button>
@@ -64,4 +64,14 @@ Display one match
 <div class="container footer">
 	Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
 </div>
+
+<input type="hidden" name="hidden_leaderboard_time" value="{{$match->competition->updated_at}}" />
+<input type="hidden" name="hidden_match_time" value="{{$match->updated_at}}" />
+
+@stop
+
+
+@section('refreshers')
+overlyComplexButBeautifulFunction('/refresher/leaderboard/', 5, 'hidden_leaderboard_time');
+overlyComplexButBeautifulFunction('/refresher/match/{{$match->id}}', 12, 'hidden_match_time');
 @stop

@@ -62,9 +62,11 @@
 
 
     </body>
+<script type="text/javascript">
+$( document ).ready(function() {
 
 @yield('refreshers')
-<script type="text/javascript">
+
 function overlyComplexButBeautifulFunction(url, numericValue, inputName) {
     $.ajax({
         url: url,
@@ -75,9 +77,11 @@ function overlyComplexButBeautifulFunction(url, numericValue, inputName) {
             }
         },
         always: function() {
-            setTimeout(overlyComplexButBeautifulFunction, numericValue);
+            setTimeout(overlyComplexButBeautifulFunction, (numericValue * 1000));
         }
     });
 }
+});
 </script>
+
 </html>

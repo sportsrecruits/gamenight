@@ -86,5 +86,13 @@ Form to create a new match
         Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
     </div>
 </div>
+
+<input type="hidden" name="hidden_leaderboard_time" value="{{$matches[0]->competition->updated_at}}" />
+
 @stop
 
+
+
+@section('refreshers')
+overlyComplexButBeautifulFunction('/refresher/leaderboard/', 5, 'hidden_leaderboard_time');
+@stop
