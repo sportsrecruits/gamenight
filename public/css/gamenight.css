@@ -537,14 +537,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .alert {
-position: absolute;
-    top: 50px;
-    padding: 6px;
-    font-size: 14px;
-    border-radius: 0;
-    text-shadow: none;
-    border: 0;
-    box-shadow: none;
-    width: 100%;
-    text-align: center;
+position: absolute !important;
+top: 50px !important;
+padding: 6px !important;
+font-size: 14px !important;
+border-radius: 0 !important;
+text-shadow: none !important;
+border: 0 !important;
+box-shadow: none !important;
+width: 100% !important;
+text-align: center !important;
 }
