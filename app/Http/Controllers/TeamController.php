@@ -132,6 +132,11 @@ class TeamController extends Controller
 	        break;
         }
         
+        
+        // update the match for refreshers
+		$team->match->updated_at = Carbon::now('America/New_York');
+		$team->match->save();
+
         return redirect('/match')->with('message', (($mode == 'leave') ? 'You left the team' : 'You joined the team'));
 
     }

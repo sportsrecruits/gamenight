@@ -59,5 +59,25 @@
 
 @yield('content')
 
+
+
     </body>
+
+@yield('refreshers')
+<script type="text/javascript">
+function overlyComplexButBeautifulFunction(url, numericValue, inputName) {
+    $.ajax({
+        url: url,
+        success: function(data) {
+            var inputValue = $('input[name='+inputName+']').val();
+            if (data.updatedAt !== inputValue) {
+                location.reload();
+            }
+        },
+        always: function() {
+            setTimeout(overlyComplexButBeautifulFunction, numericValue);
+        }
+    });
+}
+</script>
 </html>
