@@ -9,22 +9,18 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+ */
 
 Route::get('/test', function () {
 
-	echo Carbon\Carbon::now('America/New_York');
-	
+    echo Carbon\Carbon::now('America/New_York');
+
 });
-
-
 
 Route::get('/', 'LeaderboardController@index');
 
-
 Route::get('refresher/leaderboard', 'RefresherController@leaderboard');
 Route::get('refresher/match/{id}', 'RefresherController@match');
-
 
 Route::group(['middleware' => 'auth'], function()
 {
@@ -46,7 +42,7 @@ Route::group(['middleware' => 'auth'], function()
 
 Route::get('login', 'UserController@login');
 Route::get('logout', function () {
-	Auth::logout();
+    Auth::logout();
 });
 
 Route::get('oauth_callback/', 'UserController@handleProviderCallback');

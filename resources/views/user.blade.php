@@ -2,50 +2,76 @@
 
 <!--
 Display one match
-	- the teams on each with the members 
-	- button to select a winner	
+	- the teams on each with the members
+	- button to select a winner
 -->
 
 @section('content')
 
-
-<div class="col-xs-4">
-<img width="50" class="img-rounded" src="{{$user->avatar}}" alt="" />
-<h4>{{$user->name}}</h4>
-<p><span>All-time:</span>{{$user->alltime_points}}</p>
-<p><span>Today:</span>{{$user->today_points}}</p>
+<div class="container page-heading" id="startchange">
+  <h1>MY PROFILE</h1>
 </div>
-        
-<div class="col-xs-8" style="border-left:1px solid #ccc;">
 
-<ul class="list-group">
+<div class="container no-side-padding">
+
+<div class="panel panel-default match-card personal-info">
+  <div class="panel-heading">
+  	<a href="/match/20" class="u-flex-space-between"><span>Personal Stuff</span></a>
+  </div>
+  <div class="panel-body">
+	<ul class="list-group">
+		<li class="list-group-item match-card-teammates">
+	      <div class="u-flex-start"><img class="img-circle" src="{{$user->avatar}}"><span>{{$user->name}}</span></div>
+	    </li>
+	</ul>
+  </div>
+</div>
+
+<div class="panel panel-default match-card personal-info">
+
+  <div class="panel-heading">
+  	<a href="/match/20" class="u-flex-space-between"><span>MY GAMES</span></a>
+  </div>
+
+  <div class="panel-body">
+
 	@foreach ($matches as $match)
-	<li class="list-group-item">
-		<h5>{{$match->game->name}}
-		@if ($match->status == 'won') 
-		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>		
-		@elseif ($match->status == 'complete') 
-		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>		
-		@elseif ($match->status == 'in-progress') 
-		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>		
-		@endif	
-			
-			
+
+	<ul class="list-group">
+
+	    <li class="list-group-item match-card-team-name">
+	      <div class="u-flex-start"><span>{{$match->game->name}}</span></div>
+	    </li>
+
 		@foreach ($match->teams as $team)
-			<div class="well" style="padding:5px">
-				<a class="btn btn-default" href="javascript:;" role="button">{{$team->name}}</a>
-				<br />
-				<p>{{$team->users->implode('user.name', ',')}}</p>
-			</div>
+		    <li class="list-group-item match-card-teammates">
+		      <div class="u-flex-start"><span class="img-circle team-logo team_style_3"></span><span>{{$team->name}}&#039;s Team</span></div>
+		    </li>
+
+		    <li class="list-group-item text-center">
+				@if ($match->status == 'won')
+					<strong>You won this game!</strong><br>{{$user->today_points}}
+				@elseif ($match->status == 'complete')
+
+				@elseif ($match->status == 'in-progress')
+			      <div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
+			        <form action="/team/29" method="POST">
+			          <input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
+			          <input type="hidden" name="_method" value="PUT">
+			          <input type="hidden" name="mode" value="leave" />
+			            <input type="submit" type="button" value="View this Game" class="btn btn-default match-card-team-btn" />
+			        </form>
+			      </div>
+				@endif
+			</li>
 		@endforeach
-		
-		{{$match->created_at->diffForHumans()}}		
-		
-	</li>
+			</ul>
+		<div class="game-timestamp">{{$match->created_at->diffForHumans()}}</div>
   	@endforeach
-</ul>
-
 </div>
-        
-@stop
 
+<div class="container footer">
+  Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
+</div>
+
+@stop
