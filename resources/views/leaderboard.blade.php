@@ -21,7 +21,7 @@
 	</thead>
 	<tbody>
 		@foreach ($leaderboard as $index => $entry)
-		<tr class="{{($index == 0) ? 'success' : ''}} {{($entry->user->id == Auth::user()->id) ? 'current-user-row' : ''}}"> 
+		<tr class="{{($index == 0) ? 'success' : ''}} {{($entry->user->id == $auth_user_id) ? 'current-user-row' : ''}}"> 
 			<td>@if($index == 0)
 				<i class="material-icons gold">looks_one</i>
 				@elseif($index == 1)
@@ -32,7 +32,7 @@
 				{{$index}}
 				@endif
 			</td>
-			<td><img class="img-circle" src="{{$entry->user->avatar}}" alt="{{$entry->user->name}}"/>{{($entry->user->id == Auth::user()->id) ? 'Me' : $entry->user->name}}</td>
+			<td><img class="img-circle" src="{{$entry->user->avatar}}" alt="{{$entry->user->name}}"/>{{($entry->user->id == $auth_user_id) ? 'Me' : $entry->user->name}}</td>
 			<td>{{$entry->points_total}}</td>
 		</tr>
 		@endforeach
