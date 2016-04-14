@@ -76,7 +76,7 @@ Form to create a new match
 	<form action="/match" method="POST" class="u-flex-grow-auto">
 	<span class="u-flex-grow-auto">
 
-		<span style="font-weight: 500;font-size:13px;">Start&nbsp;New&nbsp;Game:</span>
+		<span style="font-weight: 500;font-size:13px;width: 152px;">Start&nbsp;New&nbsp;Game:</span>
 		{{ csrf_field() }}
 		<select name="game_id" class="form-control">
 		  @foreach ($games as $game)
