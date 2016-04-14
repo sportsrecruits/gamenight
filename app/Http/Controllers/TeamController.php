@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use Session;
+use Carbon\Carbon;
 
 class TeamController extends Controller
 {
@@ -97,7 +98,7 @@ class TeamController extends Controller
 	        case 'leave':
 	        	$team->users()->where('user_id', Auth::user()->id)->delete();
 	        	// if last person to leave delete this team
-	        	if (count($team->users) == 1) {
+	        	if (count($team->users) == 0) {
 		        	$team->delete();
 					if ($team->match->teams->reduce(function ($carry,$team) { return $team->users->count() + $carry;}) == 1) {
 			        	$team->match->delete();

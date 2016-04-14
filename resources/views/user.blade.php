@@ -45,8 +45,10 @@ Display one match
 
 		@foreach ($match->teams as $team)
 		    <li class="list-group-item match-card-teammates">
-		      <div class="u-flex-start"><span class="img-circle team-logo team_style_3"></span><span>{{$team->name}}&#039;s Team</span></div>
+		      <div class="u-flex-start"><span class="img-circle team-logo team_style_3"></span><span>{{$team->name}}</span></div>
 		    </li>
+
+		    @if ($team->user_on_team)
 
 		    <li class="list-group-item text-center">
 				@if ($match->status == 'won')
@@ -55,15 +57,12 @@ Display one match
 
 				@elseif ($match->status == 'in-progress')
 			      <div class="btn-group btn-group-sm match-card-team-form" role="group" aria-label="Small button group">
-			        <form action="/team/29" method="POST">
-			          <input type="hidden" name="_token" value="U6IIhveE3D8HAkT6MiJRcWXT94nCwYSEkMlmV2oy">
-			          <input type="hidden" name="_method" value="PUT">
-			          <input type="hidden" name="mode" value="leave" />
-			            <input type="submit" type="button" value="View this Game" class="btn btn-default match-card-team-btn" />
-			        </form>
+		            <a href="/match/{{$match->id}}" class="btn btn-default match-card-team-btn">View this Match</a>
 			      </div>
 				@endif
 			</li>
+			
+			@endif
 		@endforeach
 			</ul>
 		<div class="game-timestamp">{{$match->created_at->diffForHumans()}}</div>

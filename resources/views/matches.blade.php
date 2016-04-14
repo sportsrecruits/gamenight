@@ -87,12 +87,16 @@ Form to create a new match
     </div>
 </div>
 
+@if (!empty($matches[0]))
 <input type="hidden" name="hidden_leaderboard_time" value="{{$matches[0]->competition->updated_at}}" />
+@endif
 
 @stop
 
 
 
 @section('refreshers')
+@if (!empty($matches[0]))
 overlyComplexButBeautifulFunction('/refresher/leaderboard/', 5, 'hidden_leaderboard_time');
+@endif
 @stop

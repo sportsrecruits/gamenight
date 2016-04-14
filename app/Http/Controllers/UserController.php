@@ -32,8 +32,13 @@ class UserController extends Controller
 		 */
 		foreach ($matches as &$match) {
 			if ($match->locked_winner_match_team_id) {
-
-				if ($match->teams->where('id', $match->locked_winner_match_team_id)->first()->users->contains('user_id', $user->id)) {
+/*
+   				dd($user->id);
+   				
+   				dd ($match->teams->where('id', $match->locked_winner_match_team_id)->first()->users->contains('user_id', 1));
+*/
+				$users_c = $match->teams->where('id', $match->locked_winner_match_team_id)->first();
+				if ($users_c && $users_c->users->contains('user_id', $user->id)) {
 					$match->status = 'won';
 				} else {
 					$match->status = 'complete';
@@ -41,6 +46,19 @@ class UserController extends Controller
 			} else {
 				$match->status = 'in-progress';
 			}		
+				
+			foreach ($matches as &$match) {
+				$match->user_in_match = false;
+				foreach ($match->teams as &$team) {
+					if ($team->users->contains('user_id', Auth::user()->id)) {
+						$team->user_on_team = true;
+						$match->user_in_match = true;
+					} else {
+						$team->user_on_team = false;
+					}
+				}
+			}			
+			
 		}
 
 		// Total alltime points
@@ -50,8 +68,12 @@ class UserController extends Controller
 			}	
 		);
 
-		$user->today_points = \App\Leaderboard::where('user_id','=',$user->id)->orderBy('competition_id', 'desc')->first()->points_total;
-
+		$points_query = \App\Leaderboard::where('user_id','=',$user->id)->orderBy('competition_id', 'desc')->first();
+		
+		if ($points_query)
+			$user->today_points = $points_query->points_total;
+		else 
+			$user->today_points = 0;
 		
 		$data = [
 			'tab' => 'profile',
