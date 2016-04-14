@@ -75,5 +75,10 @@
 Made with <i class="material-icons">favorite_border</i> by SR Product Engineering
 </div>
 
+<input type="hidden" name="hidden_leaderboard_time" value="{{$competition->updated_at}}" />
+@stop
 
+
+@section('refreshers')
+overlyComplexButBeautifulFunction('/refresher/leaderboard/', 5, 'hidden_leaderboard_time');
 @stop

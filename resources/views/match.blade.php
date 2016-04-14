@@ -23,7 +23,7 @@ Display one match
 			<ul class="list-group">
 				<li class="list-group-item match-card-team-name">
 					  <div class="u-flex-start">
-						  <span class="img-circle team-logo team_style_1"></span>
+						  <span class="img-circle team-logo team_style_{{$team->style}}"></span>
 						  <span>{{$team->name}}</span>
 					  </div>
 				</li>

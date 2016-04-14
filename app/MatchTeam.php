@@ -16,4 +16,12 @@ class MatchTeam extends Model
     public function match () {
 	    return $this->belongsTo ('\App\Match');
     }
+
+	public function save(array $options = array())
+	{
+	    if(empty($this->id)) {
+	        $this->style = rand(1,26);
+	    }
+	    return parent::save($options);
+	}
 }
