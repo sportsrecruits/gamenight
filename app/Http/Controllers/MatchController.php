@@ -172,7 +172,7 @@ $username = Request::old('username');
 				} else {
 					// create if not found in leaderboard 
 					$leaderboard = new \App\Leaderboard;
-					$leaderboard->user_id = $user->id;
+					$leaderboard->user_id = $l_user->id;
 					$leaderboard->competition_id = $match->competition_id;
 					$leaderboard->points_total = $points_awarded_per_user;
 				}
