@@ -68,17 +68,17 @@ $( document ).ready(function() {
 @yield('refreshers')
 
 function overlyComplexButBeautifulFunction(url, numericValue, inputName) {
-    $.ajax({
-        url: url,
-        success: function(data) {
-            var inputValue = $('input[name='+inputName+']').val();
+	$.ajax({
+		url: url,
+		success: function(data) {
+			var inputValue = $('input[name='+inputName+']').val();
 
-            if (data.updatedAt !== inputValue) {
-                location.reload();
-            }
-        }
-    }).always(function() {
-            setTimeout(function() {
+			if (data.updatedAt !== inputValue) {
+				location.reload();
+			}
+		}
+	}).always(function() {
+		setTimeout(function() {
 			overlyComplexButBeautifulFunction(url, numericValue, inputName);
 		}, (numericValue * 1000));
 	});
