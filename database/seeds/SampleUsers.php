@@ -28,12 +28,15 @@ class SampleUsers extends Seeder
 			$match = new \App\Match;
 			$match->game()->associate(\App\Game::find(rand(1,3)));
 			$match->competition_id = 1;
+			$match->save();
 			
 			$team1 = new \App\MatchTeam;
+			$team1->save();
 			$team1->match()->associate($match);
 			$team1->users()->saveMany([\App\User::find(1), \App\User::find(2)]);			
 
 			$team2 = new \App\MatchTeam;
+			$team2->save();
 			$team2->match()->associate($match);
 			$team2->users()->saveMany([\App\User::find(3), \App\User::find(4)]);		
 

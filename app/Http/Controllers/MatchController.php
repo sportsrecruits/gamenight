@@ -148,6 +148,7 @@ $username = Request::old('username');
 			}
 		}
 		
+		// gets you the team with the most points
 		$maxs = array_keys($tally, max($tally));
 		
 		if ($tally[$maxs[0]] >= count($match->teams)) {

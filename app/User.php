@@ -50,6 +50,12 @@ class User extends Authenticatable
     public function leaderboard () {
 	    return $this->hasMany('\App\Leaderboard');
     }
-    
+
+	public function getFirstName () {
+		return explode(' ', $this->name)[0];
+	}   
+	
+	 
+//    AlluserMatches()
     
 }
